@@ -1,4 +1,4 @@
-package br.com.example.sw2you.realmeet;
+package br.com.sw2you.realmeet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

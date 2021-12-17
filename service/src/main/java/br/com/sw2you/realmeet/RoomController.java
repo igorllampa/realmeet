@@ -1,4 +1,4 @@
-package br.com.example.sw2you.realmeet;
+package br.com.sw2you.realmeet;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
