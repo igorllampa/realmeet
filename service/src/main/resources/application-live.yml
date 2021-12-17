@@ -3,5 +3,5 @@
 # =================================
 spring:
   datasource:
-    url: jdbc:mysql://realmeet-db.cbseyu4dh0dq.us-east-2.rds.amazonaws.com:3306/realmeet?&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://realmeet-db.cbseyu4dh0dq.us-east-2.rds.amazonaws.com:3306/realmeet?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false
     username: admin
