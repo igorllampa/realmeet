@@ -196,7 +196,7 @@
                                 <java8>true</java8>
                                 <async>true</async>
                                 <serializableModel>true</serializableModel>
-                                <configPackage>${api.path}.api.config</configPackage>
+                                <configPackage>${api.path}.api.br.com.sw2you.realmeet.config</configPackage>
                                 <classpathTargetSpec>${openapi-spec.classpath}</classpathTargetSpec>
                                 <isCorsEnabled>true</isCorsEnabled>
                             </configOptions>
