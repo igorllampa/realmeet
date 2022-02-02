@@ -1,6 +1,7 @@
 package br.com.sw2you.realmeet.integration;
 
 import static br.com.sw2you.realmeet.utils.TestConstants.DEFAULT_ROOM_ID;
+import static br.com.sw2you.realmeet.utils.TestDataCreator.newCreateRoomDTO;
 import static br.com.sw2you.realmeet.utils.TestDataCreator.newRoomBuilder;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,5 +55,28 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Test
     void testGetRoomDoesNotExist(){
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(DEFAULT_ROOM_ID));
+    }
+
+    @Test
+    void testCreateRoomSuccess(){
+        var createRoomDto = newCreateRoomDTO();
+        var roomDto = api.createRoom(createRoomDto);
+
+        assertEquals(createRoomDto.getName(), roomDto.getName());
+        assertEquals(createRoomDto.getSeats(), roomDto.getSeats());
+        assertNotNull(roomDto.getId());
+
+        var room = roomRepository.findById(roomDto.getId()).orElseThrow();
+
+        assertEquals(roomDto.getName(), room.getName());
+        assertEquals(roomDto.getSeats(), room.getSeats());
+    }
+
+    @Test
+    void testCreateRoomValidationError(){
+        assertThrows(
+            HttpClientErrorException.UnprocessableEntity.class,
+            () -> api.createRoom(newCreateRoomDTO().name(null))
+        );
     }
 }
