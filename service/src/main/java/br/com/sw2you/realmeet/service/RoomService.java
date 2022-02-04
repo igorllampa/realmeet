@@ -49,5 +49,6 @@ public class RoomService {
         return roomRepository
                 .findByIdAndActive(id, true)
                 .orElseThrow( () -> new RoomNotFoundException("Room not found: " + id));
+
     }
 }
