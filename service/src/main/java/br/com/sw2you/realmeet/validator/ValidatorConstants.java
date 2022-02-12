@@ -17,12 +17,16 @@ public final class ValidatorConstants {
     public static final int ALLOCATION_SUBJECT_MAX_LENGTH = 60;
     public static final int ALLOCATION_EMPLOYEE_NAME_MAX_LENGTH = 20;
     public static final int ALLOCATION_EMPLOYEE_EMAIL_MAX_LENGTH = 30;
+    public static final int ALLOCATION_MAX_DURATION_SECONDS = 4 * 60 * 60;//4 Horas
 
     public static final String MISSING = ".missing";
     public static final String EXCEEDS_MAX_LENGTH = ".exceedsMaxLength";
     public static final String EXCEEDS_MAX_VALUE = ".exceedsMaxValue";
     public static final String BELOW_MIN_VALUE = ".belowMinValue";
     public static final String DUPLICATE = ".duplicate";
+    public static final String INCONSISTENT = ".inconsistent";
+    public static final String IN_THE_PAST = ".inThePast";
+    public static final String EXCEEDS_DURATION = ".exceedsDuration";
 
     private ValidatorConstants() {}
 }
