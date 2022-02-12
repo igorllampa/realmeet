@@ -65,8 +65,9 @@ public class AllocationValidator {
     }
 
     private void validateDateOrdering(OffsetDateTime startAt, OffsetDateTime endAt, ValidationErrors validationErrors){
-        if(startAt.isEqual(endAt) || startAt.isAfter(endAt))
+        if(startAt.isEqual(endAt) || startAt.isAfter(endAt)) {
             validationErrors.add(ALLOCATION_START_AT, ALLOCATION_START_AT + INCONSISTENT);
+        }
     }
 
     private void validateDateInTheFuture(OffsetDateTime date, ValidationErrors validationErrors){
