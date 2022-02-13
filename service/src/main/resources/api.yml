@@ -116,10 +116,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AllocationDTO'
-        422:
-          $ref: '#/components/responses/UnprocessableEntity'
         404:
           description: Not Found
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+
+  /allocations/{id}:
+    delete:
+      summary: 'Deletes an allocation by ID'
+      operationId: deleteAllocation
+      tags:
+        - allocation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the allocation
+          schema:
+            type: integer
+            format: int64
+      responses:
+        204:
+          description: 'Deleted Successfully'
+        404:
+          description: Not Found
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
 
 components:
   schemas:
