@@ -1,11 +1,10 @@
 package br.com.sw2you.realmeet.integration;
 
+import static br.com.sw2you.realmeet.utils.TestConstants.*;
 import static br.com.sw2you.realmeet.utils.TestDataCreator.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import br.com.sw2you.realmeet.api.facade.AllocationApi;
-import br.com.sw2you.realmeet.api.model.CreateRoomDTO;
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
 import br.com.sw2you.realmeet.repository.AllocationRepository;
 import br.com.sw2you.realmeet.repository.RoomRepository;
@@ -93,5 +92,48 @@ class AllocationApiIntegrationTest extends BaseIntegrationTest {
     @Test
     void testDeleteAllocationDoesNotExist(){
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.deleteAllocation(1L));
+    }
+
+    @Test
+    void testUpdateAllocationSuccess(){
+        var room = roomRepository.saveAndFlush(newRoomBuilder().id(1L).build());
+        var createAllocationDTO = newCreateAllocationDTO().roomId(room.getId());
+        var allocationDTO =  api.createAllocation(createAllocationDTO);
+        var updateAllocationDTO = newUpdateAllocationDTO()
+            .subject(DEFAULT_ALLOCATION_SUBJECT + "_")
+            .startAt(DEFAULT_ALLOCATION_START_AT.plusDays(1))
+            .endAt(DEFAULT_ALLOCATION_END_AT.plusDays(1));
+
+        api.updateAllocation(
+            allocationDTO.getId(),
+            updateAllocationDTO
+        );
+
+        var allocation = allocationRepository.findById(allocationDTO.getId()).orElseThrow();
+
+        assertEquals(updateAllocationDTO.getSubject(), allocation.getSubject());
+        assertTrue(updateAllocationDTO.getStartAt().isEqual(allocation.getStartAt()));
+        assertTrue(updateAllocationDTO.getEndAt().isEqual(allocation.getEndAt()));
+
+    }
+
+    @Test
+    void testUpdateAllocationDoesNotExist(){
+        assertThrows(
+                HttpClientErrorException.NotFound.class,
+                () -> api.updateAllocation(1L, newUpdateAllocationDTO())
+        );
+    }
+
+    @Test
+    void testUpdateRoomValidationError(){
+        var room = roomRepository.saveAndFlush(newRoomBuilder().id(1L).build());
+        var createAllocationDTO = newCreateAllocationDTO().roomId(room.getId());
+        var allocationDTO =  api.createAllocation(createAllocationDTO);
+
+        assertThrows(
+                HttpClientErrorException.UnprocessableEntity.class,
+                () -> api.updateAllocation(allocationDTO.getId(), newUpdateAllocationDTO().subject(null))
+        );
     }
 }
