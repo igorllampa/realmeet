@@ -17,6 +17,10 @@ public final class TestDataCreator {
         return Room.newBuilder().name(DEFAULT_ROOM_NAME).seats(DEFAULT_ROOM_SEATS);
     }
 
+    public static Employee.Builder newEmployeeBuilder(){
+        return Employee.newBuilder().name(DEFAULT_EMPLOYEE_NAME).email(DEFAULT_EMPLOYEE_EMAIL);
+    }
+
     public static Allocation.Builder newAllocationBuilder(Room room){
         return Allocation
                 .newBuilder()
