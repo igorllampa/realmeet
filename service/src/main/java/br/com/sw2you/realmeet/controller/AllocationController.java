@@ -9,6 +9,8 @@ import br.com.sw2you.realmeet.api.model.*;
 import br.com.sw2you.realmeet.service.AllocationService;
 import br.com.sw2you.realmeet.service.RoomService;
 import br.com.sw2you.realmeet.util.ResponseEntityUtils;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +43,11 @@ public class AllocationController implements AllocationsApi {
     public CompletableFuture<ResponseEntity<Void>> updateAllocation(Long id, UpdateAllocationDTO updateAllocationDTO) {
         return runAsync(() -> allocationService.updateAllocation(id, updateAllocationDTO), controllerExecutor)
                 .thenApply(ResponseEntityUtils::noContent);
+    }
+
+    @Override
+    public CompletableFuture<ResponseEntity<List<AllocationDTO>>> listAllocations(String employeeEmail, Long roomId, LocalDate startAt, LocalDate endAt, String orderBy, Integer limit) {
+        return supplyAsync(() -> allocationService.listAllocations(employeeEmail, roomId, startAt, endAt, orderBy, limit), controllerExecutor)
+                .thenApply(ResponseEntityUtils::ok);
     }
 }
