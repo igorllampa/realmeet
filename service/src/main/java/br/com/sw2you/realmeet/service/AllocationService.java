@@ -67,7 +67,7 @@ public class AllocationService {
     }
 
     public void deleteAllocation(Long allocationId){
-        var allocation = getAllocationOrThrow(allocationId.longValue());
+        var allocation = getAllocationOrThrow(allocationId);
 
         if(isAllocationInThePast(allocation)){
             throw new AllocationCannotBeDeletedException();
@@ -84,7 +84,7 @@ public class AllocationService {
             throw new AllocationCannotBeUpdatedException();
         }
 
-        allocationValidator.validate(allocationId, updateAllocationDTO);
+        allocationValidator.validate(allocationId, allocation.getRoom().getId(), updateAllocationDTO);
 
         allocationRepository.updateAllocation(
                 allocationId,
@@ -94,9 +94,17 @@ public class AllocationService {
         );
     }
 
-    public List<AllocationDTO> listAllocations(String employeeEmail, Long roomId, LocalDate startAt, LocalDate endAt, String orderBy, Integer limit){
+    public List<AllocationDTO> listAllocations(
+            String employeeEmail,
+            Long roomId,
+            LocalDate startAt,
+            LocalDate endAt,
+            String orderBy,
+            Integer limit,
+            Integer page
+    ){
 
-        Pageable pageable = PageUtils.newPageable(null, limit, maxLimit, orderBy, SORTABLE_FIELDS);
+        Pageable pageable = PageUtils.newPageable(page, limit, maxLimit, orderBy, SORTABLE_FIELDS);
 
         var allocations = allocationRepository.findAllWithFilters(
             employeeEmail,

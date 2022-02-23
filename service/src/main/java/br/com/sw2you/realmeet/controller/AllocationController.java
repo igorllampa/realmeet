@@ -46,8 +46,8 @@ public class AllocationController implements AllocationsApi {
     }
 
     @Override
-    public CompletableFuture<ResponseEntity<List<AllocationDTO>>> listAllocations(String employeeEmail, Long roomId, LocalDate startAt, LocalDate endAt, String orderBy, Integer limit) {
-        return supplyAsync(() -> allocationService.listAllocations(employeeEmail, roomId, startAt, endAt, orderBy, limit), controllerExecutor)
+    public CompletableFuture<ResponseEntity<List<AllocationDTO>>> listAllocations(String employeeEmail, Long roomId, LocalDate startAt, LocalDate endAt, String orderBy, Integer limit, Integer page) {
+        return supplyAsync(() -> allocationService.listAllocations(employeeEmail, roomId, startAt, endAt, orderBy, limit, page), controllerExecutor)
                 .thenApply(ResponseEntityUtils::ok);
     }
 }

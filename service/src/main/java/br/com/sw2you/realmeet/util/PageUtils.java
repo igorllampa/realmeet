@@ -32,9 +32,7 @@ public final class PageUtils {
 
     private static Sort parseOrderByFields(String orderBy, List<String> validSortableFields){
 
-        requireNonNull(validSortableFields);
-
-        if (validSortableFields.isEmpty()){
+        if(isNull(validSortableFields) || validSortableFields.isEmpty()){
             throw new IllegalArgumentException("No valid sortable fields were defined");
         }
 
