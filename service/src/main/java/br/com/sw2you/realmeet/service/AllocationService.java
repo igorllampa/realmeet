@@ -73,6 +73,7 @@ public class AllocationService {
             throw new AllocationCannotBeDeletedException();
         }
 
+
         allocationRepository.delete(allocation);
     }
 
