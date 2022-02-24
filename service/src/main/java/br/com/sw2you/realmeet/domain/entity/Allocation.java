@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Table(name = "allocation")
 public class Allocation {
 
+
     public static final List<String> SORTABLE_FIELDS = List.of("startAt", "endAt");
 
     @Id
