@@ -18,6 +18,7 @@ public class EmailConfiguration {
         this.emailConfigProperties = emailConfigProperties;
     }
 
+
     @Bean
     public JavaMailSender javaMailSender(){
         var mailSender = new JavaMailSenderImpl();

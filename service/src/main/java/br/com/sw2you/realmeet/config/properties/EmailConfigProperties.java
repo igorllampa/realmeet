@@ -19,6 +19,7 @@ public class EmailConfigProperties {
     private final String from;
     private final Map<String, String> properties;
 
+
     public EmailConfigProperties(String host, String username, String password, String from, Map<String, String> properties) {
         this.host = host;
         this.username = username;
