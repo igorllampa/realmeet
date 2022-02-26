@@ -10,5 +10,7 @@ public class ClientConfiguration {
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
+
+
     }
 }
