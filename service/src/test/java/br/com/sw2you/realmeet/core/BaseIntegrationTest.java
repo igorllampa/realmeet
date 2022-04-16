@@ -21,7 +21,6 @@ import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.BDDMockito;
 
-@ActiveProfiles(profiles = "integration-test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class)
 public abstract class BaseIntegrationTest {
 

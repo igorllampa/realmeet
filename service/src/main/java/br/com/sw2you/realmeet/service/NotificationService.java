@@ -7,8 +7,6 @@ import br.com.sw2you.realmeet.domain.entity.Allocation;
 import br.com.sw2you.realmeet.email.EmailInfoBuilder;
 import br.com.sw2you.realmeet.email.EmailSender;
 import br.com.sw2you.realmeet.email.TemplateType;
-import br.com.sw2you.realmeet.email.model.EmailInfo;
-import br.com.sw2you.realmeet.util.Constants;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 
