@@ -13,6 +13,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <spring-boot-maven-plugin.version>2.4.3</spring-boot-maven-plugin.version>
         <testcontainers.version>1.16.0</testcontainers.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
@@ -141,6 +142,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin.version}</version>
                 <configuration>
                     <mainClass>br.com.sw2you.realmeet.Application</mainClass>
                 </configuration>

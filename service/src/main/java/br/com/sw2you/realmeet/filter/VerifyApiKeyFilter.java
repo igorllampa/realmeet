@@ -22,6 +22,7 @@ public class VerifyApiKeyFilter extends GenericFilterBean {
     private static final Logger LOGGER = LoggerFactory.getLogger(VerifyApiKeyFilter.class);
     private static final String HEADER_API_KEY = "api-key";
 
+
     private final ClientRepository clientRepository;
 
     public VerifyApiKeyFilter(ClientRepository clientRepository) {
