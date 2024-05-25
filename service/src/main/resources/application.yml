@@ -1,0 +1,68 @@
+# =================================
+# = Server
+# =================================
+server:
+  port: 8095
+  servlet:
+    context-path: /v1
+
+# ====================================
+# = Spring
+# ====================================
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3390/realmeet?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 
+    type: com.zaxxer.hikari.HikariDataSource
+  mail:
+    host: smtp.gmail.com
+    username: @gmail.com
+    password: 
+    from: @gmail.com
+    properties:
+      mail.transport.protocol: smtp
+      mail.smtp.port: 587
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  flyway:
+    locations: classpath:/db/migration/mysql
+
+# =================================
+# = Logging
+# =================================
+logging:
+  level:
+    org.springframework: INFO
+    org.flywaydb: INFO
+
+# =================================
+# = RealMeet
+# =================================
+realmmeet:
+  allocations:
+    maxFilterLimit: 50
+  taskExecutor:
+    pool:
+      coreSize: 20
+      maxSize: 20
+      queueCapacity: 50
+      keepAliveSeconds: 50
+  email:
+    templates:
+      allocationCreated:
+        subject: Novo agendamento de sala criado
+        templateName: allocation-created.html
+      allocationUpdated:
+        subject: Agendamento de sala alterado
+        templateName: allocation-updated.html]
+      allocationDeleted:
+        subject: Agendamento de sala excluído
+        templateName: allocation-deleted.html
+      allocationReport:
+        subject: Relatório de agendamento de sala
+        templateName: allocation-report.html
+  reports:
+    allocationReport:
+      maxMonthsInterval: 6
